@@ -610,4 +610,44 @@ class AdminController extends Controller
 
         return redirect()->route('admin.ticker')->with('success', 'Running text ticker bar berhasil diperbarui.');
     }
+
+    // ── PERSYARATAN DOKUMEN ────────────────────────────────────────────────────
+
+    private function defaultPersyaratan(): array
+    {
+        return [
+            'Surat Pengantar dari Ormas yang ditandatangani Ketua & Sekretaris, ditujukan kepada Bupati Grobogan U.p. Kepala Badan Kesbangpol Kab. Grobogan, perihal: Laporan Keberadaan Ormas. (KOP Surat Ormas, Nomor, Tanggal, Cap & Tanda Tangan Pengurus)',
+            'Fotocopy Akte Pendirian / Akta Notaris',
+            'Fotocopy Surat Pengesahan dari Kemenkumham',
+            'Program Kerja Organisasi (ditandatangani Ketua dan Sekretaris)',
+            'Fotocopy SK Susunan Kepengurusan Organisasi Tingkat Kabupaten Grobogan',
+            'Surat Keterangan Domisili Kantor/Sekretariat Ormas (TTD Lurah/Kepala Desa) + Bukti Kepemilikan/Kontrak/Izin Pakai + Foto kantor tampak depan memuat papan nama',
+            'Foto Copy NPWP atas Nama Ormas',
+            'Biodata Pengurus + Pas Foto Berwarna 4x6 cm (3 bulan terakhir) - Ketua, Sekretaris, Bendahara',
+            'Foto Copy E-KTP Pengurus - Ketua, Sekretaris, Bendahara',
+            'Formulir Data Ormas / LSM + Lambang, Bendera & Cap Stempel Ormas + Surat Pernyataan Tidak dalam Sengketa / Perkara',
+        ];
+    }
+
+    public function persyaratanIndex()
+    {
+        $raw = Setting::get('persyaratan_dokumen');
+        $persyaratan = $raw ? json_decode($raw, true) : $this->defaultPersyaratan();
+
+        return view('admin.persyaratan.index', compact('persyaratan'));
+    }
+
+    public function persyaratanUpdate(Request $request)
+    {
+        $request->validate([
+            'persyaratan' => 'required|array|min:1',
+            'persyaratan.*' => 'required|string|max:1000',
+        ]);
+
+        $items = array_values(array_filter($request->persyaratan, fn ($v) => trim($v) !== ''));
+
+        Setting::set('persyaratan_dokumen', json_encode($items, JSON_UNESCAPED_UNICODE));
+
+        return redirect()->route('admin.persyaratan')->with('success', 'Persyaratan dokumen berhasil diperbarui.');
+    }
 }

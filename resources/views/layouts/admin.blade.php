@@ -113,6 +113,9 @@
         <a href="{{ route('admin.ticker') }}" class="sidebar-link flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-sm font-medium {{ request()->routeIs('admin.ticker*') ? 'active' : '' }}">
             <i class="fas fa-bullhorn w-4 flex-shrink-0"></i> <span>Running Text</span>
         </a>
+        <a href="{{ route('admin.persyaratan') }}" class="sidebar-link flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-sm font-medium {{ request()->routeIs('admin.persyaratan*') ? 'active' : '' }}">
+            <i class="fas fa-clipboard-list w-4 flex-shrink-0"></i> <span>Persyaratan Dokumen</span>
+        </a>
         <a href="{{ route('admin.template') }}" class="sidebar-link flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-sm font-medium {{ request()->routeIs('admin.template*') ? 'active' : '' }}">
             <i class="fas fa-file-download w-4 flex-shrink-0"></i> <span>Template Dokumen</span>
         </a>

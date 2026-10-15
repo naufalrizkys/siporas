@@ -118,18 +118,7 @@
             </button>
         </div>
         <div class="overflow-y-auto flex-1 divide-y divide-gray-100">
-            @foreach([
-                'Surat Pengantar dari Ormas yang ditandatangani Ketua & Sekretaris, ditujukan kepada Bupati Grobogan U.p. Kepala Badan Kesbangpol Kab. Grobogan, perihal: Laporan Keberadaan Ormas. (KOP Surat Ormas, Nomor, Tanggal, Cap & Tanda Tangan Pengurus)',
-                'Fotocopy Akte Pendirian / Akta Notaris',
-                'Fotocopy Surat Pengesahan dari Kemenkumham',
-                'Program Kerja Organisasi (ditandatangani Ketua dan Sekretaris)',
-                'Fotocopy SK Susunan Kepengurusan Organisasi Tingkat Kabupaten Grobogan',
-                'Surat Keterangan Domisili Kantor/Sekretariat Ormas (TTD Lurah/Kepala Desa) + Bukti Kepemilikan/Kontrak/Izin Pakai + Foto kantor tampak depan memuat papan nama',
-                'Foto Copy NPWP atas Nama Ormas',
-                'Biodata Pengurus + Pas Foto Berwarna 4x6 cm (3 bulan terakhir) - Ketua, Sekretaris, Bendahara',
-                'Foto Copy E-KTP Pengurus - Ketua, Sekretaris, Bendahara',
-                'Formulir Data Ormas / LSM + Lambang, Bendera & Cap Stempel Ormas + Surat Pernyataan Tidak dalam Sengketa / Perkara',
-            ] as $i => $req)
+            @foreach($persyaratan as $i => $req)
             <div class="flex items-start gap-3 px-6 py-4 hover:bg-gray-50 transition-colors">
                 <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-white text-xs font-black" style="background:#b91c1c;">{{ $i+1 }}</div>
                 <p class="text-sm text-gray-700 leading-relaxed">{{ $req }}</p>

@@ -110,6 +110,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::get('/ticker', [AdminController::class, 'tickerIndex'])->name('ticker');
     Route::post('/ticker', [AdminController::class, 'tickerUpdate'])->name('ticker.update');
 
+    // Persyaratan Dokumen
+    Route::get('/persyaratan', [AdminController::class, 'persyaratanIndex'])->name('persyaratan');
+    Route::post('/persyaratan', [AdminController::class, 'persyaratanUpdate'])->name('persyaratan.update');
+
     // Template Dokumen
     Route::get('/template', [TemplateController::class, 'index'])->name('template');
     Route::post('/template', [TemplateController::class, 'store'])->name('template.store');
