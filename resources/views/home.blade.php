@@ -18,37 +18,38 @@
 </div>
 
 {{-- ═══ HERO SLIDER SECTION ═══ --}}
-<section class="relative bg-gray-900 overflow-hidden">
-    <div class="relative w-full slide-height">
-        @forelse($sliders as $index => $slide)
-        <div class="hero-slide-item absolute inset-0 {{ $index === 0 ? 'active-slide' : 'hidden-slide' }} transition-opacity duration-500">
-            <img src="{{ Storage::url($slide->gambar) }}" alt="{{ $slide->judul ?? 'SIPORAS Grobogan' }}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
-                <div class="max-w-screen-xl mx-auto px-4 sm:px-8 pb-10 w-full">
-                    @if($slide->judul)
-                    <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-2 drop-shadow-md">{{ $slide->judul }}</h2>
-                    @endif
-                    @if($slide->deskripsi)
-                    <p class="text-sm sm:text-base text-gray-200 max-w-2xl drop-shadow">{{ $slide->deskripsi }}</p>
-                    @endif
+<section class="relative bg-gray-900 overflow-hidden" id="hero-section">
+    <div class="relative w-full slide-height" id="slider-track-wrapper" style="overflow:hidden;">
+        {{-- Track: semua slide sejajar horizontal --}}
+        <div id="slider-track" style="display:flex;width:100%;height:100%;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);">
+            @forelse($sliders as $index => $slide)
+            <div class="hero-slide-item flex-shrink-0" style="width:100%;height:100%;position:relative;">
+                <img src="{{ Storage::url($slide->gambar) }}" alt="{{ $slide->judul ?? 'SIPORAS Grobogan' }}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                    <div class="max-w-screen-xl mx-auto px-4 sm:px-8 pb-10 w-full slide-caption" style="transform:translateY(20px);opacity:0;transition:transform 0.5s ease 0.3s,opacity 0.5s ease 0.3s;">
+                        @if($slide->judul)
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-2 drop-shadow-md">{{ $slide->judul }}</h2>
+                        @endif
+                        @if($slide->deskripsi)
+                        <p class="text-sm sm:text-base text-gray-200 max-w-2xl drop-shadow">{{ $slide->deskripsi }}</p>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
-        @empty
-        <div class="hero-slide-item absolute inset-0 active-slide bg-gradient-to-r from-red-900 via-red-800 to-red-900 flex items-center justify-center text-center p-6">
-            <div class="max-w-screen-xl mx-auto px-4 sm:px-8 py-12">
-                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-white/90 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/20">
-                    <i class="fas fa-landmark"></i> Kesbangpol Kab. Grobogan
+            @empty
+            <div class="hero-slide-item flex-shrink-0 bg-gradient-to-r from-red-900 via-red-800 to-red-900 flex items-center justify-center text-center p-6" style="width:100%;height:100%;">
+                <div class="max-w-screen-xl mx-auto px-4 sm:px-8 py-12 slide-caption" style="transform:translateY(20px);opacity:0;transition:transform 0.5s ease 0.3s,opacity 0.5s ease 0.3s;">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-white/90 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/20">
+                        <i class="fas fa-landmark"></i> Kesbangpol Kab. Grobogan
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 drop-shadow-md">SIPORAS GROBOGAN</h1>
+                    <p class="text-base sm:text-xl text-red-100 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow">
+                        Sistem Informasi Pelayanan & Laporan Keberadaan Organisasi Masyarakat Kab. Grobogan
+                    </p>
                 </div>
-                <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 drop-shadow-md">
-                    SIPORAS GROBOGAN
-                </h1>
-                <p class="text-base sm:text-xl text-red-100 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow">
-                    Sistem Informasi Pelayanan & Laporan Keberadaan Organisasi Masyarakat Kab. Grobogan
-                </p>
             </div>
+            @endforelse
         </div>
-        @endforelse
     </div>
 
     @if($sliders->count() > 1)
@@ -60,11 +61,25 @@
     </button>
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
         @foreach($sliders as $index => $slide)
-        <button class="slide-dot h-2 rounded-full transition-all" data-index="{{ $index }}" style="width: {{ $index === 0 ? '24px' : '8px' }}; background: {{ $index === 0 ? '#b91c1c' : 'rgba(255,255,255,0.5)' }}"></button>
+        <button class="slide-dot h-2 rounded-full transition-all" data-index="{{ $index }}" style="width:{{ $index === 0 ? '24px' : '8px' }};background:{{ $index === 0 ? '#b91c1c' : 'rgba(255,255,255,0.5)' }}"></button>
         @endforeach
     </div>
     @endif
 </section>
+
+{{-- ═══ ANIMASI INTRO POPUP (sekali saat pertama buka) ═══ --}}
+<div id="intro-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s ease;">
+    <div id="intro-card" style="background:#fff;border-radius:20px;padding:36px 32px;max-width:420px;width:90%;text-align:center;transform:scale(0.85) translateY(30px);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 24px 64px rgba(0,0,0,0.3);">
+        <div style="width:64px;height:64px;background:linear-gradient(135deg,#b91c1c,#dc2626);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <i class="fas fa-landmark" style="color:#fff;font-size:28px;"></i>
+        </div>
+        <h2 style="font-size:20px;font-weight:900;color:#111827;margin:0 0 8px;">Selamat Datang di SIPORAS</h2>
+        <p style="font-size:13px;color:#6b7280;line-height:1.6;margin:0 0 20px;">Sistem Informasi Pelayanan Ormas Kabupaten Grobogan — kelola laporan keberadaan organisasi masyarakat secara online.</p>
+        <button onclick="closeIntro()" style="background:#b91c1c;color:#fff;border:none;border-radius:12px;padding:12px 32px;font-size:14px;font-weight:700;cursor:pointer;width:100%;transition:background .2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#b91c1c'">
+            <i class="fas fa-arrow-right" style="margin-right:8px;"></i> Mulai Jelajahi
+        </button>
+    </div>
+</div>
 
 {{-- ═══ PERSYARATAN & TEMPLATE (CARD + MODAL) ═══ --}}
 <section class="py-12 bg-white" data-aos="fade-up">
@@ -444,37 +459,80 @@
         document.body.removeChild(form);
     }
 
-    // ── Hero Slider ───────────────────────────────────────────────────────────
+    // ── Hero Slider (slide geser smooth) ─────────────────────────────────────
+    const track  = document.getElementById('slider-track');
     const slides = document.querySelectorAll('.hero-slide-item');
     const dots   = document.querySelectorAll('.slide-dot');
-    let current  = 0, timer;
+    let current  = 0, timer, isAnimating = false;
+
+    function showCaption(idx) {
+        const caption = slides[idx]?.querySelector('.slide-caption');
+        if (caption) {
+            caption.style.transform = 'translateY(20px)';
+            caption.style.opacity = '0';
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    caption.style.transform = 'translateY(0)';
+                    caption.style.opacity = '1';
+                }, 50);
+            });
+        }
+    }
+
+    function goTo(idx) {
+        if (isAnimating || slides.length <= 1) return;
+        isAnimating = true;
+        if (dots[current]) { dots[current].style.background = 'rgba(255,255,255,0.5)'; dots[current].style.width = '8px'; }
+        current = (idx + slides.length) % slides.length;
+        if (track) track.style.transform = `translateX(-${current * 100}%)`;
+        if (dots[current]) { dots[current].style.background = '#b91c1c'; dots[current].style.width = '24px'; }
+        showCaption(current);
+        setTimeout(() => { isAnimating = false; }, 650);
+    }
+
+    function startAuto() { timer = setInterval(() => goTo(current + 1), 5000); }
+    function stopAuto()  { clearInterval(timer); }
 
     if (slides.length > 1) {
-        function goTo(idx) {
-            slides[current].classList.add('hidden-slide');
-            slides[current].classList.remove('active-slide');
-            if (dots[current]) { dots[current].style.background = 'rgba(185,28,28,0.3)'; dots[current].style.width = '8px'; }
-            current = (idx + slides.length) % slides.length;
-            slides[current].classList.remove('hidden-slide');
-            slides[current].classList.add('active-slide');
-            if (dots[current]) { dots[current].style.background = '#b91c1c'; dots[current].style.width = '24px'; }
-        }
-
-        function startAuto() { timer = setInterval(() => goTo(current + 1), 5000); }
-        function stopAuto()  { clearInterval(timer); }
-
-        document.getElementById('next-slide')?.addEventListener('click', () => { stopAuto(); goTo(current+1); startAuto(); });
-        document.getElementById('prev-slide')?.addEventListener('click', () => { stopAuto(); goTo(current-1); startAuto(); });
+        document.getElementById('next-slide')?.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+        document.getElementById('prev-slide')?.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
         dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(+d.dataset.index); startAuto(); }));
-
         startAuto();
+    }
+    // Tampilkan caption slide pertama
+    showCaption(0);
+
+    // ── Intro Popup (sekali per sesi) ─────────────────────────────────────────
+    function closeIntro() {
+        const overlay = document.getElementById('intro-overlay');
+        const card    = document.getElementById('intro-card');
+        card.style.transform = 'scale(0.85) translateY(30px)';
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 400);
+        sessionStorage.setItem('siporas_intro_shown', '1');
+    }
+
+    if (!sessionStorage.getItem('siporas_intro_shown')) {
+        const overlay = document.getElementById('intro-overlay');
+        const card    = document.getElementById('intro-card');
+        overlay.style.display = 'flex';
+        overlay.style.pointerEvents = 'auto';
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            overlay.style.opacity = '1';
+            card.style.transform = 'scale(1) translateY(0)';
+        }, 300);
     }
 </script>
 <style>
-    .active-slide { display: block; }
-    .hidden-slide  { display: none; }
+    #slider-track-wrapper { overflow: hidden; }
+    #slider-track { display: flex; height: 100%; will-change: transform; }
+    .hero-slide-item { flex-shrink: 0; width: 100%; height: 100%; position: relative; }
     .slide-height  { height: 360px; }
-    @media (min-width: 640px) { .slide-height { height: 540px; } }
+    @media (min-width: 640px)  { .slide-height { height: 540px; } }
     @media (min-width: 1024px) { .slide-height { height: 650px; } }
 </style>
 @endpush
