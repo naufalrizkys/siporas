@@ -5,15 +5,12 @@
 @section('content')
 
 {{-- ═══ TICKER / RUNNING TEXT ═══ --}}
+@php
+    $tickerFull = $runningText . '   ·   ' . $runningText . '   ·   ';
+@endphp
 <div style="background:#991b1b;width:100%;overflow:hidden;">
-    <div style="display:flex;align-items:center;height:32px;max-width:100%;">
-        <div class="ticker-wrap" style="flex:1;overflow:hidden;height:100%;display:flex;align-items:center;">
-            <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;">
-                <span style="color:rgba(255,255,255,0.9);font-size:11.5px;font-weight:600;letter-spacing:.04em;">
-                    {{ $runningText }} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; {{ $runningText }} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-                </span>
-            </div>
-        </div>
+    <div class="ticker-wrap" style="height:30px;display:flex;align-items:center;overflow:hidden;">
+        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:rgba(255,255,255,0.92);font-size:11.5px;font-weight:600;letter-spacing:.04em;">{{ $tickerFull }}</div>
     </div>
 </div>
 

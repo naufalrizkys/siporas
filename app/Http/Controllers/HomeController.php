@@ -26,7 +26,7 @@ class HomeController extends Controller
         if (! is_array($tickerItems)) {
             $tickerItems = [$raw];
         }
-        $runningText = implode(' &nbsp;•&nbsp; ', $tickerItems);
+        $runningText = implode('   ·   ', $tickerItems);
         $templates = Template::where('aktif', true)->orderBy('urutan')->orderBy('created_at')->get();
 
         $defaultPersyaratan = [
