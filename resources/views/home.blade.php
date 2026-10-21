@@ -148,8 +148,6 @@
                     class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white transition-colors">
                 <i class="fas fa-times text-sm"></i>
             </button>
-        </div>"fas fa-times text-sm"></i>
-            </button>
         </div>
         @if($templates->isEmpty())
         <div class="text-center py-12 text-gray-400">
