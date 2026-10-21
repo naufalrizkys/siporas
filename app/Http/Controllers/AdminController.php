@@ -595,20 +595,29 @@ class AdminController extends Controller
 
     public function tickerIndex()
     {
-        $runningText = Setting::get('running_text', 'GERAKAN INDONESIA SADAR ADMINISTRASI KEPENDUDUKAN');
+        $raw = Setting::get('running_text');
+        $items = $raw ? (json_decode($raw, true) ?? [$raw]) : ['GERAKAN INDONESIA SADAR ADMINISTRASI KEPENDUDUKAN'];
 
-        return view('admin.ticker.index', compact('runningText'));
+        // Pastikan selalu array
+        if (! is_array($items)) {
+            $items = [$items];
+        }
+
+        return view('admin.ticker.index', compact('items'));
     }
 
     public function tickerUpdate(Request $request)
     {
         $request->validate([
-            'running_text' => 'required|string|max:1000',
+            'items' => 'required|array|min:1',
+            'items.*' => 'required|string|max:500',
         ]);
 
-        Setting::set('running_text', $request->running_text);
+        $items = array_values(array_filter($request->items, fn ($v) => trim($v) !== ''));
 
-        return redirect()->route('admin.ticker')->with('success', 'Running text ticker bar berhasil diperbarui.');
+        Setting::set('running_text', json_encode($items, JSON_UNESCAPED_UNICODE));
+
+        return redirect()->route('admin.ticker')->with('success', 'Ticker bar berhasil diperbarui.');
     }
 
     // ── PERSYARATAN DOKUMEN ────────────────────────────────────────────────────

@@ -21,7 +21,12 @@ class HomeController extends Controller
         $kegiatanTerbaru = Kegiatan::with('ormas')->orderBy('tanggal_mulai', 'desc')->take(6)->get();
         $ormasTerbaru = Ormas::where('status', 'aktif')->orderBy('created_at', 'desc')->take(6)->get();
         $sliders = Slider::aktif()->get();
-        $runningText = Setting::get('running_text', 'GERAKAN INDONESIA SADAR ADMINISTRASI KEPENDUDUKAN');
+        $raw = Setting::get('running_text', 'GERAKAN INDONESIA SADAR ADMINISTRASI KEPENDUDUKAN');
+        $tickerItems = json_decode($raw, true) ?? [$raw];
+        if (! is_array($tickerItems)) {
+            $tickerItems = [$raw];
+        }
+        $runningText = implode(' &nbsp;•&nbsp; ', $tickerItems);
         $templates = Template::where('aktif', true)->orderBy('urutan')->orderBy('created_at')->get();
 
         $defaultPersyaratan = [
