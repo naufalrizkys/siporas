@@ -4,6 +4,23 @@
 
 @section('content')
 
+{{-- ═══ TICKER / RUNNING TEXT ═══ --}}
+<div style="background:#b91c1c;width:100%;overflow:hidden;border-top:1px solid rgba(255,255,255,0.15);">
+    <div style="display:flex;align-items:center;height:36px;">
+        <div style="background:#7f1d1d;padding:0 16px;height:100%;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+            <i class="fas fa-bullhorn" style="color:#fca5a5;font-size:11px;"></i>
+            <span style="color:#fca5a5;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;">Pengumuman</span>
+        </div>
+        <div class="ticker-wrap" style="flex:1;overflow:hidden;height:100%;display:flex;align-items:center;">
+            <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;">
+                <span style="color:#fff;font-size:12px;font-weight:600;letter-spacing:.03em;">
+                    {{ $runningText }} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; {{ $runningText }} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 {{-- ═══ HERO SLIDER SECTION ═══ --}}
 <section class="relative bg-gray-900 overflow-hidden">
     <div class="relative w-full slide-height">
