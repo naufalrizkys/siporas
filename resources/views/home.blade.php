@@ -5,15 +5,11 @@
 @section('content')
 
 {{-- ═══ TICKER / RUNNING TEXT ═══ --}}
-<div style="background:#b91c1c;width:100%;overflow:hidden;border-top:1px solid rgba(255,255,255,0.15);">
-    <div style="display:flex;align-items:center;height:36px;">
-        <div style="background:#7f1d1d;padding:0 16px;height:100%;display:flex;align-items:center;gap:8px;flex-shrink:0;">
-            <i class="fas fa-bullhorn" style="color:#fca5a5;font-size:11px;"></i>
-            <span style="color:#fca5a5;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;">Pengumuman</span>
-        </div>
+<div style="background:#991b1b;width:100%;overflow:hidden;">
+    <div style="display:flex;align-items:center;height:32px;max-width:100%;">
         <div class="ticker-wrap" style="flex:1;overflow:hidden;height:100%;display:flex;align-items:center;">
             <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;">
-                <span style="color:#fff;font-size:12px;font-weight:600;letter-spacing:.03em;">
+                <span style="color:rgba(255,255,255,0.9);font-size:11.5px;font-weight:600;letter-spacing:.04em;">
                     {{ $runningText }} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp; {{ $runningText }} &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
                 </span>
             </div>
