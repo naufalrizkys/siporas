@@ -8,9 +8,9 @@
 @php
     $tickerFull = $runningText . '   ·   ' . $runningText . '   ·   ';
 @endphp
-<div style="background:#991b1b;width:100%;overflow:hidden;">
+<div style="background:#ffffff;width:100%;overflow:hidden;border-bottom:1px solid #e5e7eb;">
     <div class="ticker-wrap" style="height:30px;display:flex;align-items:center;overflow:hidden;">
-        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#ffffff;font-size:11.5px;font-weight:600;letter-spacing:.04em;">{{ $tickerFull }}</div>
+        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#b91c1c;font-size:11.5px;font-weight:600;letter-spacing:.04em;">{{ $tickerFull }}</div>
     </div>
 </div>
 
