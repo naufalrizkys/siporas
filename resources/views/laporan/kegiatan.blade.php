@@ -319,6 +319,26 @@
                 </div>
             </div>
 
+        </div>{{-- end foto-grid --}}
+
+        {{-- Section: Dokumen Pengumpulan --}}
+        <div style="display:flex;align-items:center;gap:10px;border-left:4px solid #1d4ed8;padding-left:14px;margin:28px 0 16px;">
+            <div>
+                <h3 style="font-size:16px;font-weight:700;color:#111827;margin:0;">Dokumen Pengumpulan</h3>
+                <p style="font-size:12.5px;color:#6b7280;margin:2px 0 0;">Upload dokumen pendukung laporan kegiatan (opsional)</p>
+            </div>
+        </div>
+
+        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:16px;background:#fff;margin-bottom:8px;" id="dokumen-wrap">
+            <div class="upload-area" id="upload-area-dok" style="border-color:#bfdbfe;background:#eff6ff;">
+                <input type="file" name="dokumen_pengumpulan[]" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" multiple
+                       onchange="handleDokumen(this)">
+                <i class="fas fa-file-upload" style="color:#1d4ed8;"></i>
+                <p style="color:#1e40af;">Klik untuk pilih file dokumen<br>
+                    <span style="font-size:11px;color:#6b7280;">PDF, Word, Excel, Gambar — maks. 10MB per file, bisa pilih beberapa</span>
+                </p>
+            </div>
+            <div class="preview-chips" id="chips-dok" style="margin-top:8px;"></div>
         </div>
 
         <div class="submit-row">
@@ -402,6 +422,46 @@ function addFotoItem() {
 function removeFotoItem(idx) {
     const item = document.getElementById('foto-item-' + idx);
     if (item) { item.remove(); }
+}
+
+function handleDokumen(input) {
+    const area  = document.getElementById('upload-area-dok');
+    const chips = document.getElementById('chips-dok');
+    chips.innerHTML = '';
+
+    if (!input.files.length) return;
+
+    area.style.borderColor = '#93c5fd';
+    area.style.background  = '#dbeafe';
+
+    const iconMap = {
+        pdf: 'fas fa-file-pdf',
+        doc: 'fas fa-file-word', docx: 'fas fa-file-word',
+        xls: 'fas fa-file-excel', xlsx: 'fas fa-file-excel',
+        jpg: 'fas fa-file-image', jpeg: 'fas fa-file-image', png: 'fas fa-file-image',
+    };
+    const colorMap = {
+        pdf: '#dc2626', doc: '#1d4ed8', docx: '#1d4ed8',
+        xls: '#16a34a', xlsx: '#16a34a',
+        jpg: '#9333ea', jpeg: '#9333ea', png: '#9333ea',
+    };
+
+    Array.from(input.files).forEach(file => {
+        const ext   = file.name.split('.').pop().toLowerCase();
+        const icon  = iconMap[ext] || 'fas fa-file';
+        const color = colorMap[ext] || '#6b7280';
+        const size  = file.size < 1048576
+            ? (file.size / 1024).toFixed(0) + ' KB'
+            : (file.size / 1048576).toFixed(1) + ' MB';
+        const short = file.name.length > 36 ? file.name.slice(0, 34) + '…' : file.name;
+        const chip  = document.createElement('div');
+        chip.className = 'chip';
+        chip.innerHTML = `<i class="${icon}" style="color:${color};"></i><span title="${file.name}">${short}</span><span style="color:#9ca3af;">${size}</span>`;
+        chips.appendChild(chip);
+    });
+
+    area.querySelector('p').innerHTML =
+        `<span style="font-weight:700;color:#1e40af;">${input.files.length} file dipilih</span>`;
 }
 
 function openMobModal(id) {

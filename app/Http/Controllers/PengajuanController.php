@@ -491,6 +491,8 @@ class PengajuanController extends Controller
             'foto.*' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'deskripsi_foto' => ['required', 'array', 'min:1'],
             'deskripsi_foto.*' => ['required', 'string', 'max:500'],
+            'dokumen_pengumpulan' => ['nullable', 'array'],
+            'dokumen_pengumpulan.*' => ['file', 'mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png', 'max:10240'],
         ]);
 
         $fotoPaths = [];
@@ -501,6 +503,17 @@ class PengajuanController extends Controller
             ];
         }
 
+        $dokumenPaths = [];
+        if ($request->hasFile('dokumen_pengumpulan')) {
+            foreach ($request->file('dokumen_pengumpulan') as $file) {
+                $dokumenPaths[] = [
+                    'path' => $file->store('kegiatan/dokumen', 'public'),
+                    'nama' => $file->getClientOriginalName(),
+                    'ukuran' => $file->getSize(),
+                ];
+            }
+        }
+
         Pengajuan::create([
             'nama_pemohon' => auth()->user()->name,
             'nik' => '3315000000000000',
@@ -508,7 +521,10 @@ class PengajuanController extends Controller
             'email' => auth()->user()->email,
             'jenis_layanan' => 'laporan_kegiatan',
             'keterangan' => 'Laporan foto kegiatan ormas',
-            'data_perubahan' => ['foto_kegiatan' => $fotoPaths],
+            'data_perubahan' => [
+                'foto_kegiatan' => $fotoPaths,
+                'dokumen_pengumpulan' => $dokumenPaths,
+            ],
             'status' => 'menunggu',
         ]);
 
