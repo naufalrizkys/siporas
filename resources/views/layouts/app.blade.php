@@ -401,12 +401,10 @@
                     <div class="font-black text-white text-base uppercase leading-tight">Badan Kesatuan Bangsa dan Politik</div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-1">
-                    <div>
-                        <p class="text-gray-400 text-sm"><span class="font-semibold text-white">Hotline Pelayanan Ormas:</span> <a href="https://wa.me/628977976105" target="_blank" class="text-green-400 hover:underline font-medium"><i class="fab fa-whatsapp text-green-500 mr-1"></i>+62 897-7976-105</a></p>
-                        <p class="text-gray-400 text-sm mt-1"><span class="font-semibold text-white">Email Resmi:</span> <a href="mailto:adminsiporas@gmail.com" class="text-gray-300 hover:text-white">adminsiporas@gmail.com</a></p>
-                    </div>
-                    <div class="sm:border-l sm:border-gray-700 sm:pl-10">
+                <div>
+                    <p class="text-gray-400 text-sm"><span class="font-semibold text-white">Hotline Pelayanan Ormas:</span> <a href="https://wa.me/628977976105" target="_blank" class="text-green-400 hover:underline font-medium"><i class="fab fa-whatsapp text-green-500 mr-1"></i>+62 897-7976-105</a></p>
+                    <p class="text-gray-400 text-sm mt-1"><span class="font-semibold text-white">Email Resmi:</span> <a href="mailto:adminsiporas@gmail.com" class="text-gray-300 hover:text-white">adminsiporas@gmail.com</a></p>
+                    <div class="mt-3 pt-3 border-t border-gray-700">
                         <div class="font-bold text-white text-sm uppercase tracking-wide mb-1">Jam Operasional</div>
                         <p class="text-gray-400 text-sm">Senin – Kamis: 07.30 – 16.00 WIB</p>
                         <p class="text-gray-400 text-sm">Jumat: 07.30 – 14.30 WIB</p>
