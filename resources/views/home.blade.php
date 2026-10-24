@@ -8,9 +8,17 @@
 @php
     $tickerFull = $runningText . '   ·   ' . $runningText . '   ·   ';
 @endphp
-<div style="background:#ffffff;width:100%;overflow:hidden;border-bottom:1px solid #e5e7eb;">
-    <div class="ticker-wrap" style="height:30px;display:flex;align-items:center;overflow:hidden;">
-        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#b91c1c;font-size:11.5px;font-weight:600;letter-spacing:.04em;">{{ $tickerFull }}</div>
+<div style="background:#fff;width:100%;overflow:hidden;border-bottom:1px solid #f3f4f6;display:flex;align-items:stretch;">
+    {{-- Label badge --}}
+    <div style="background:linear-gradient(135deg,#b91c1c,#dc2626);padding:0 16px;display:flex;align-items:center;gap:7px;flex-shrink:0;">
+        <i class="fas fa-satellite-dish" style="color:#fca5a5;font-size:10px;"></i>
+        <span style="color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;">INFO</span>
+    </div>
+    {{-- Ticker teks --}}
+    <div class="ticker-wrap" style="flex:1;overflow:hidden;height:34px;display:flex;align-items:center;background:#fff;">
+        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#374151;font-size:11.5px;font-weight:500;letter-spacing:.03em;">
+            {{ $tickerFull }}
+        </div>
     </div>
 </div>
 
