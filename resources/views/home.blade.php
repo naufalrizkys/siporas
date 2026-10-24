@@ -6,21 +6,24 @@
 
 {{-- ═══ TICKER / RUNNING TEXT ═══ --}}
 @php
-    $tickerFull = $runningText . '   ·   ' . $runningText . '   ·   ';
+    $tickerFull = $runningText . '     •     ' . $runningText . '     •     ';
 @endphp
-<div style="background:#fff;width:100%;overflow:hidden;border-bottom:1px solid #f3f4f6;display:flex;align-items:stretch;">
-    {{-- Label badge --}}
-    <div style="background:linear-gradient(135deg,#b91c1c,#dc2626);padding:0 16px;display:flex;align-items:center;gap:7px;flex-shrink:0;">
-        <i class="fas fa-satellite-dish" style="color:#fca5a5;font-size:10px;"></i>
-        <span style="color:#fff;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;">INFO</span>
+<div style="background:#fafafa;border-bottom:1px solid #e5e7eb;display:flex;align-items:stretch;overflow:hidden;width:100%;">
+    {{-- Badge INFO --}}
+    <div style="background:#b91c1c;padding:0 14px;height:36px;display:flex;align-items:center;gap:6px;flex-shrink:0;">
+        <span style="width:7px;height:7px;background:#fca5a5;border-radius:50%;display:inline-block;animation:pulse-dot 1.5s ease-in-out infinite;"></span>
+        <span style="color:#fff;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;">INFO</span>
     </div>
-    {{-- Ticker teks --}}
-    <div class="ticker-wrap" style="flex:1;overflow:hidden;height:34px;display:flex;align-items:center;background:#fff;">
-        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#374151;font-size:11.5px;font-weight:500;letter-spacing:.03em;">
-            {{ $tickerFull }}
-        </div>
+    {{-- Divider segitiga --}}
+    <div style="width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:12px solid #b91c1c;flex-shrink:0;"></div>
+    {{-- Teks berjalan --}}
+    <div class="ticker-wrap" style="flex:1;overflow:hidden;height:36px;display:flex;align-items:center;">
+        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#1f2937;font-size:12px;font-weight:500;letter-spacing:.02em;">{{ $tickerFull }}</div>
     </div>
 </div>
+<style>
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+</style>
 
 {{-- ═══ HERO SLIDER SECTION ═══ --}}
 <section class="relative bg-gray-900 overflow-hidden" id="hero-section">
