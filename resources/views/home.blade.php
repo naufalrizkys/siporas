@@ -9,10 +9,21 @@
     $tickerFull = $runningText . '     •     ' . $runningText . '     •     ';
 @endphp
 <div style="background:#fafafa;border-bottom:1px solid #e5e7eb;overflow:hidden;width:100%;height:36px;display:flex;align-items:center;">
-    <div class="ticker-wrap" style="flex:1;overflow:hidden;height:36px;display:flex;align-items:center;">
-        <div class="ticker-move" style="display:inline-block;white-space:nowrap;padding-left:100%;color:#1f2937;font-size:12px;font-weight:500;letter-spacing:.02em;">{{ $tickerFull }}</div>
+    <div style="display:flex;width:100%;overflow:hidden;height:36px;align-items:center;">
+        {{-- Dua salinan teks agar sambung mulus --}}
+        <div id="ticker-inner" style="display:flex;white-space:nowrap;will-change:transform;">
+            <span style="display:inline-block;padding-right:60px;color:#1f2937;font-size:12px;font-weight:500;letter-spacing:.02em;">{{ $tickerFull }}</span>
+            <span style="display:inline-block;padding-right:60px;color:#1f2937;font-size:12px;font-weight:500;letter-spacing:.02em;" aria-hidden="true">{{ $tickerFull }}</span>
+        </div>
     </div>
 </div>
+<style>
+    #ticker-inner { animation: ticker-scroll 60s linear infinite; }
+    @keyframes ticker-scroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+</style>
 
 {{-- ═══ HERO SLIDER SECTION ═══ --}}
 <section class="relative bg-gray-900 overflow-hidden" id="hero-section">
