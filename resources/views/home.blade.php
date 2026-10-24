@@ -65,16 +65,16 @@
 </section>
 
 {{-- ═══ ANIMASI INTRO POPUP (sekali saat pertama buka) ═══ --}}
-<div id="intro-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s ease;">
-    <div id="intro-card" style="background:#fff;border-radius:20px;padding:36px 32px;max-width:420px;width:90%;text-align:center;transform:scale(0.85) translateY(30px);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 24px 64px rgba(0,0,0,0.3);">
-        <div style="width:64px;height:64px;background:linear-gradient(135deg,#b91c1c,#dc2626);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
-            <i class="fas fa-landmark" style="color:#fff;font-size:28px;"></i>
+<div id="intro-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.5s ease;">
+    <div id="intro-card" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:380px;width:90%;text-align:center;transform:scale(0.88) translateY(24px);transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+        <div style="width:56px;height:56px;background:linear-gradient(135deg,#b91c1c,#dc2626);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+            <i class="fas fa-landmark" style="color:#fff;font-size:24px;"></i>
         </div>
-        <h2 style="font-size:20px;font-weight:900;color:#111827;margin:0 0 8px;">Selamat Datang di SIPORAS</h2>
-        <p style="font-size:13px;color:#6b7280;line-height:1.6;margin:0 0 20px;">Sistem Informasi Pelayanan Ormas Kabupaten Grobogan — kelola laporan keberadaan organisasi masyarakat secara online.</p>
-        <button onclick="closeIntro()" style="background:#b91c1c;color:#fff;border:none;border-radius:12px;padding:12px 32px;font-size:14px;font-weight:700;cursor:pointer;width:100%;transition:background .2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#b91c1c'">
-            <i class="fas fa-arrow-right" style="margin-right:8px;"></i> Mulai Jelajahi
-        </button>
+        <h2 style="font-size:18px;font-weight:900;color:#111827;margin:0 0 8px;">Selamat Datang di SIPORAS</h2>
+        <p style="font-size:12.5px;color:#6b7280;line-height:1.6;margin:0;">Sistem Informasi Pelayanan Ormas Kabupaten Grobogan.</p>
+        <div id="intro-progress" style="height:3px;background:#f3f4f6;border-radius:99px;margin-top:20px;overflow:hidden;">
+            <div id="intro-bar" style="height:100%;width:0%;background:#b91c1c;transition:width 2.5s linear;border-radius:99px;"></div>
+        </div>
     </div>
 </div>
 
@@ -499,29 +499,32 @@
     // Tampilkan caption slide pertama
     showCaption(0);
 
-    // ── Intro Popup (sekali per sesi) ─────────────────────────────────────────
-    function closeIntro() {
-        const overlay = document.getElementById('intro-overlay');
-        const card    = document.getElementById('intro-card');
-        card.style.transform = 'scale(0.85) translateY(30px)';
-        overlay.style.opacity = '0';
-        setTimeout(() => {
-            overlay.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 400);
-        sessionStorage.setItem('siporas_intro_shown', '1');
-    }
-
+    // ── Intro Popup (sekali per sesi, hilang otomatis) ────────────────────────
     if (!sessionStorage.getItem('siporas_intro_shown')) {
         const overlay = document.getElementById('intro-overlay');
         const card    = document.getElementById('intro-card');
+        const bar     = document.getElementById('intro-bar');
+
         overlay.style.display = 'flex';
         overlay.style.pointerEvents = 'auto';
-        document.body.style.overflow = 'hidden';
+
+        // Muncul
         setTimeout(() => {
             overlay.style.opacity = '1';
             card.style.transform = 'scale(1) translateY(0)';
-        }, 300);
+            // Mulai progress bar
+            setTimeout(() => { bar.style.width = '100%'; }, 50);
+        }, 200);
+
+        // Hilang otomatis setelah 3 detik
+        setTimeout(() => {
+            card.style.transform = 'scale(0.9) translateY(-16px)';
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+            sessionStorage.setItem('siporas_intro_shown', '1');
+        }, 3000);
     }
 </script>
 <style>
