@@ -417,13 +417,15 @@
                 <div class="font-bold text-white text-sm uppercase tracking-wide mb-2 flex items-center gap-2">
                     <i class="fas fa-map-marker-alt text-red-400"></i> Lokasi Kantor
                 </div>
-                <div class="rounded-xl overflow-hidden border border-gray-700 shadow-lg" style="height:160px;">
+                <a href="https://maps.app.goo.gl/U7fUbfi2xoF5EU397" target="_blank" class="block">
+                <div class="rounded-xl overflow-hidden border border-gray-700 shadow-lg hover:border-blue-500 transition-colors" style="height:160px;">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.596!2d111.00921!3d-7.00756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70849b8f000001%3A0xbadc0de123456789!2sBadan%20Kesatuan%20Bangsa%20dan%20Politik%20Kab.%20Grobogan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-                        width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7424!2d110.9168302!3d-7.0807999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70b0643bb95f37%3A0xc8360d490dab5714!2sBadan%20Kesatuan%20Bangsa%20dan%20Politik%20Kabupaten%20Grobogan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                        width="100%" height="160" style="border:0;pointer-events:none;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
+                </a>
                 <a href="https://maps.app.goo.gl/U7fUbfi2xoF5EU397" target="_blank"
                     class="mt-2 inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors">
                     <i class="fas fa-external-link-alt text-xs"></i> Buka di Google Maps
