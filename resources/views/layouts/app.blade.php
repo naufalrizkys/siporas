@@ -392,22 +392,46 @@
 <!-- ═══ FOOTER ═══ -->
 <footer class="bg-gray-900 text-white mt-10">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-8 py-10">
-        <div class="flex flex-col md:flex-row items-start justify-between gap-8">
-            {{-- Kiri --}}
-            <div>
+        <div class="flex flex-col lg:flex-row items-start justify-between gap-8">
+
+            {{-- Kiri: Logo + Kontak + Jam --}}
+            <div class="flex-1">
                 <div class="flex items-center gap-3 mb-4">
                     <img src="{{ asset('images/logo-grobogan.png') }}" alt="Logo Grobogan" class="w-10 h-10 object-contain">
                     <div class="font-black text-white text-base uppercase leading-tight">Badan Kesatuan Bangsa dan Politik</div>
                 </div>
-                <p class="text-gray-400 text-sm"><span class="font-semibold text-white">Hotline Pelayanan Ormas:</span> <a href="https://wa.me/628977976105" target="_blank" class="text-green-400 hover:underline font-medium"><i class="fab fa-whatsapp text-green-500 mr-1"></i>+62 897-7976-105</a></p>
-                <p class="text-gray-400 text-sm mt-1"><span class="font-semibold text-white">Email Resmi:</span> <a href="mailto:adminsiporas@gmail.com" class="text-gray-300 hover:text-white">adminsiporas@gmail.com</a></p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-1">
+                    <div>
+                        <p class="text-gray-400 text-sm"><span class="font-semibold text-white">Hotline Pelayanan Ormas:</span> <a href="https://wa.me/628977976105" target="_blank" class="text-green-400 hover:underline font-medium"><i class="fab fa-whatsapp text-green-500 mr-1"></i>+62 897-7976-105</a></p>
+                        <p class="text-gray-400 text-sm mt-1"><span class="font-semibold text-white">Email Resmi:</span> <a href="mailto:adminsiporas@gmail.com" class="text-gray-300 hover:text-white">adminsiporas@gmail.com</a></p>
+                    </div>
+                    <div class="sm:border-l sm:border-gray-700 sm:pl-10">
+                        <div class="font-bold text-white text-sm uppercase tracking-wide mb-1">Jam Operasional</div>
+                        <p class="text-gray-400 text-sm">Senin – Kamis: 07.30 – 16.00 WIB</p>
+                        <p class="text-gray-400 text-sm">Jumat: 07.30 – 14.30 WIB</p>
+                    </div>
+                </div>
             </div>
-            {{-- Kanan --}}
-            <div class="text-sm md:text-right">
-                <div class="font-bold text-white text-sm uppercase tracking-wide mb-2">Jam Operasional Layanan</div>
-                <p class="text-gray-400">Senin – Kamis: 07.30 – 16.00 WIB</p>
-                <p class="text-gray-400">Jumat: 07.30 – 14.30 WIB</p>
+
+            {{-- Kanan: Peta Maps --}}
+            <div class="w-full lg:w-72 flex-shrink-0">
+                <div class="font-bold text-white text-sm uppercase tracking-wide mb-2 flex items-center gap-2">
+                    <i class="fas fa-map-marker-alt text-red-400"></i> Lokasi Kantor
+                </div>
+                <div class="rounded-xl overflow-hidden border border-gray-700 shadow-lg" style="height:160px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.596!2d111.00921!3d-7.00756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70849b8f000001%3A0xbadc0de123456789!2sBadan%20Kesatuan%20Bangsa%20dan%20Politik%20Kab.%20Grobogan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                        width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <a href="https://maps.app.goo.gl/U7fUbfi2xoF5EU397" target="_blank"
+                    class="mt-2 inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                    <i class="fas fa-external-link-alt text-xs"></i> Buka di Google Maps
+                </a>
             </div>
+
         </div>
     </div>
     <div class="border-t border-gray-800 py-4">
