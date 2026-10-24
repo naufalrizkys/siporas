@@ -56,11 +56,11 @@ class AdminController extends Controller
         }
 
         if ($request->filled('bulan')) {
-            $query->whereMonth('created_at', $request->bulan);
+            $query->whereMonth('updated_at', $request->bulan);
         }
 
         if ($request->filled('tahun')) {
-            $query->whereYear('created_at', $request->tahun);
+            $query->whereYear('updated_at', $request->tahun);
         }
 
         $sort = $request->get('sort', 'terbaru');
@@ -72,7 +72,7 @@ class AdminController extends Controller
 
         $ormasList = $query->paginate(15);
 
-        $availableYears = Ormas::pluck('created_at')
+        $availableYears = Ormas::pluck('updated_at')
             ->map(fn ($d) => $d?->format('Y'))
             ->concat([date('Y')])
             ->unique()
